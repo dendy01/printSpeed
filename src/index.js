@@ -9,8 +9,7 @@ import { DisplayTyping } from '../bin/displayTyping.js';
 // const right = document.body.querySelector('.right b');
 // const error = document.body.querySelector('.error b');
 const btn = document.body.querySelector('.btn');
-let currentTime = 10;
-let expiringTime = currentTime;
+let expiringTime = 10;
 
 
 const displayTyping = new DisplayTyping(document.body);
@@ -75,7 +74,6 @@ async function run(event) {
       return;
     }
 
-    expiringTime = currentTime;
     clearInterval(timer);
   }, 1000);
 
