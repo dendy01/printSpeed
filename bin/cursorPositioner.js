@@ -20,8 +20,6 @@ class CursorPositioner {
       this.previousPosition = this.currentPosition;
       this.currentPosition++;
       this.nextPosition = this.currentPosition + 1;
-    } else {
-      return;
     }
   }
 

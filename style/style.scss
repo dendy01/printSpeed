@@ -14,19 +14,16 @@ body {
 
 .container {
   border: 2px solid #DCDCDC;
+  border-radius: 5px;
   padding: 10px;
 }
 
 .content {
-  justify-content: center;
-  align-items: center;
-  display: inline-block;
   border-radius: 5px;
   text-align: justify;
 
-
   p {
-    font-size: 20px;
+    font-size: 21px;
   }
 }
 
@@ -34,8 +31,23 @@ body {
   border-top: 3px solid #DCDCDC;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+
+  .btn {
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #00FFFF;
+    border: 2px solid #DCDCDC;
+  }
 
   .info-text {
+    padding: 0;
+    width: calc(100% - 150px);
+    display: flex;
+    justify-content: space-between;
     list-style: none;
   }
 }
