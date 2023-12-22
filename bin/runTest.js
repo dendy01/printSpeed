@@ -1,12 +1,12 @@
-import { displayTyping } from "../src/index.js";
 import { keyDown } from "./checkKeyDown.js";
+import { displayTyping } from "./initTest.js";
 
 let timer;
 
 export const run = () => {
   const time = document.body.querySelector('.time>span b');
-  const content = document.body.querySelector('.content p');
 
+  displayTyping.btn.addEventListener('mousedown', e => e.preventDefault());
   document.removeEventListener('keydown', run);
   document.addEventListener('keydown', keyDown);
 

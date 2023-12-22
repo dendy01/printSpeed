@@ -6,6 +6,7 @@ class DisplayTyping {
     this.errorCharacters = body.querySelector('.error b');
     this.precisionClicks = body.querySelector('.precision b');
     this.levelTestPrint = body.querySelector('.level');
+    this.btn = body.querySelector('.btn');
     this.reset();
   }
 
@@ -51,7 +52,7 @@ class DisplayTyping {
     this.incorrectClick = 0;
     this.position = 0;
     this.currentTime = 60;
-    this.time.innerText = this.currentTime;
+    this.time.innerText = 60;
     this.correctCharacters.innerText = 0;
     this.errorCharacters.innerText = 0;
     this.precisionClicks.innerText = 0;

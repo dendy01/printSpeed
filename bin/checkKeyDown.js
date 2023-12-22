@@ -1,4 +1,4 @@
-import { displayTyping } from "../src/index.js";
+import { displayTyping } from "./initTest.js";
 
 export const keyDown = (event) => {
   switch(event.key) {

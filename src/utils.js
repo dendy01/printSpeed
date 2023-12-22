@@ -2,8 +2,53 @@ const random = (len) => {
   return Math.floor(Math.random() * len);
 };
 
+const list = {
+  info: [
+    {
+      className: 'time',
+      innerHTML: 'Оставшееся время:<span><b>60</b>c</span>',
+    },
+    {
+      className: 'right',
+      innerHTML: 'Верные нажатия:<span><b>0</b></span>',
+    },
+    {
+      className: 'error',
+      innerHTML: 'Неверные нажатия:<span><b>0</b></span>',
+    },
+    {
+      className: 'precision',
+      innerHTML: 'Аккуратность:<span><b>0</b>%</span>',
+    }
+  ]
+};
+
+const builderHTML = (list, key, parent) => {
+  let elem = '';
+
+  console.log(list);
+  console.log(key);
+  console.log(parent);
+
+  list[key].map((item) => {
+    if (parent[key].tagName === 'UL') {
+      elem = document.createElement('li');
+    } else {
+      elem = document.createElement('div');
+    }
+
+    if (item.innerHTML) {
+      elem.innerHTML = item.innerHTML;
+    }
+
+    elem.className = item.className;
+    parent[key].append(elem);
+  });
+};
+
 const renderHTML = () => {
   const root = document.querySelector('.root');
+  const paragraph = document.createElement('p');
 
   const divWrapper = document.createElement('div');
   divWrapper.className = 'wrapper';
@@ -15,7 +60,7 @@ const renderHTML = () => {
 
   const divContent = document.createElement('div');
   divContent.className = 'content';
-  divContent.innerHTML = '<p></p>';
+  divContent.append(paragraph);
   divContainer.append(divContent);
 
   const divInfo = document.createElement('div');
@@ -26,25 +71,17 @@ const renderHTML = () => {
   ulInfoText.className = 'info-text';
   divInfo.append(ulInfoText);
 
-  const liTime = document.createElement('li');
-  liTime.className = 'time';
-  liTime.innerHTML = 'Оставшееся время:<span><b>60</b>c</span>';
-  ulInfoText.append(liTime);
+  const parents = {
+    info: ulInfoText
+  };
 
-  const liRight = document.createElement('li');
-  liRight.className = 'right';
-  liRight.innerHTML = 'Верные нажатия:<span><b>0</b></span>';
-  ulInfoText.append(liRight);
+  console.log(parents);
 
-  const liError = document.createElement('li');
-  liError.className = 'error';
-  liError.innerHTML = 'Неверные нажатия:<span><b>0</b></span>';
-  ulInfoText.append(liError);
+  Object.keys(parents).forEach((key) => {
+    console.log(key);
 
-  const liPrecision = document.createElement('li');
-  liPrecision.className = 'precision';
-  liPrecision.innerHTML = 'Аккуратность:<span><b>0</b>%</span>';
-  ulInfoText.append(liPrecision);
+    builderHTML(list, key, parents);
+  });
 
   const labelLevel = document.createElement('lebal');
   labelLevel.for = 'inpLevel';

@@ -1,26 +1,26 @@
 :root {
-  --bg-DCDCDC: #DCDCDC;
-  --bg-00FFFF: #00FFFF;
+  --bg-grey: #DCDCDC;
+  --bg-aqua: #00FFFF;
 }
 
 body {
   min-height: 100vh;
   background: linear-gradient(#007acc, #6DD5FA, #FFFFFF);
   font-family: Arial, Helvetica, sans-serif;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 .wrapper {
   width: 800px;
   padding: 20px;
-  border: 2px solid var(--bg-DCDCDC);
+  border: 2px solid var(--bg-grey);
   margin: 0 auto;
   border-radius: 7px;
   background-color: white;
 }
 
 .container {
-  border: 2px solid var(--bg-DCDCDC);
+  border: 2px solid var(--bg-grey);
   border-radius: 5px;
   padding: 10px;
 }
@@ -36,7 +36,7 @@ body {
 }
 
 .info {
-  border-top: 3px solid var(--bg-DCDCDC);
+  border-top: 3px solid var(--bg-grey);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,8 +47,8 @@ body {
     height: 40px;
     font-size: 14px;
     border-radius: 5px;
-    background-color: var(--bg-00FFFF);
-    border: 2px solid var(--bg-DCDCDC);
+    background-color: var(--bg-aqua);
+    border: 2px solid var(--bg-grey);
   }
 
   .level {
