@@ -11,6 +11,8 @@ body {
 }
 
 .wrapper {
+  display: flex;
+  justify-content: space-between;
   width: 800px;
   padding: 20px;
   border: 2px solid var(--bg-grey);
@@ -35,34 +37,72 @@ body {
   }
 }
 
+.info, .showResult {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  width: 300px;
+  border: 2px solid var(--bg-grey);
+  border-radius: 7px;
+  padding-top: 5px;
+  background: white;
+  padding: 10px;
+  text-align: center;
+}
+
 .info {
-  border-top: 3px solid var(--bg-grey);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  top: 8px;
+  height: 220px;
   padding-top: 5px;
 
-  .btn {
-    width: 100px;
-    height: 40px;
-    font-size: 14px;
-    border-radius: 5px;
-    background-color: var(--bg-aqua);
-    border: 2px solid var(--bg-grey);
+  .btnContainer {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btnStop {
+    margin-left: 20px;
   }
 
   .level {
-    width: 50px;
-    height: 30px;
+    width: 30px;
+    height: 20px;
   }
 
   .info-text {
     padding: 0;
-    width: calc(100% - 300px);
-    display: flex;
-    justify-content: space-evenly;
     list-style: none;
+
+    li {
+      margin-top: 5px;
+      font-size: 20px;
+    }
   }
+}
+
+.showResult {
+  top: 255px;
+  height: 90px;
+
+  .inputNameUser {
+    width: 80px;
+  }
+
+  .btnSaveResult, .btnShowResult {
+    margin-top: 10px;
+    margin: 10px;
+  }
+}
+
+.btnStart, .btnStop, .btnSaveResult, .btnShowResult {
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: var(--bg-aqua);
+  border: 2px solid var(--bg-grey);
+  margin-top: 5px;
 }
 
 .correct {

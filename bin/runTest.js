@@ -6,7 +6,7 @@ let timer;
 export const run = () => {
   const time = document.body.querySelector('.time>span b');
 
-  displayTyping.btn.addEventListener('mousedown', e => e.preventDefault());
+  displayTyping.btnStart.addEventListener('mousedown', e => e.preventDefault());
   document.removeEventListener('keydown', run);
   document.addEventListener('keydown', keyDown);
 

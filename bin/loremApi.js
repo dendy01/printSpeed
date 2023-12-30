@@ -2,7 +2,6 @@ import { random } from "../src/utils";
 
 export class LoremApi {
   constructor(paras = 3, level) {
-    console.log(level);
     this.paras = paras;
     this.type = 'all-meat';
     this.startWithLorem = 1;

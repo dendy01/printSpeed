@@ -6,7 +6,9 @@ class DisplayTyping {
     this.errorCharacters = body.querySelector('.error b');
     this.precisionClicks = body.querySelector('.precision b');
     this.levelTestPrint = body.querySelector('.level');
-    this.btn = body.querySelector('.btn');
+    this.btnStart = body.querySelector('.btnStart');
+    this.btnStop = body.querySelector('.btnStop');
+    this.inputNameUser = body.querySelector('.inputNameUser');
     this.reset();
   }
 
@@ -44,7 +46,11 @@ class DisplayTyping {
   }
 
   setNeatClicks() {
-    this.precisionClicks.innerText = ((this.correctClick * 100) / (this.correctClick + this.incorrectClick)).toFixed(2);
+    if (this.correctClick === 0 && this.correctClick === 0) {
+      this.precisionClicks.innerText = 0;
+    } else {
+      this.precisionClicks.innerText = ((this.correctClick * 100) / (this.correctClick + this.incorrectClick)).toFixed(2);
+    }
   }
 
   reset() {
@@ -56,6 +62,7 @@ class DisplayTyping {
     this.correctCharacters.innerText = 0;
     this.errorCharacters.innerText = 0;
     this.precisionClicks.innerText = 0;
+    this.inputNameUser.value = '';
   }
 
   get LevelTestPrint() {

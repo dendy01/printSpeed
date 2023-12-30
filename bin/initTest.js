@@ -1,7 +1,7 @@
 import { PrintTextBuilder } from "../bin/printTextBuilder";
 import { LoremApi } from "../bin/loremApi";
 import { DisplayTyping } from './displayTyping.js';
-import { run ,timer } from '../bin/runTest.js';
+import { run ,timer } from './runTest.js';
 import { renderHTML } from "../src/utils.js";
 
 renderHTML();
@@ -15,9 +15,11 @@ async function initTest() {
 
   const loremApi = new LoremApi(5, displayTyping.LevelTestPrint);
 
-  displayTyping.btn.disabled = true;
+  displayTyping.btnStart.disabled = true;
+  displayTyping.btnStop.disabled = true;
   const lorem = await loremApi.text();
-  displayTyping.btn.disabled = false;
+  displayTyping.btnStart.disabled = false;
+  displayTyping.btnStop.disabled = false;
   displayTyping.levelTestPrint.blur();
 
   const printTextBuilder = new PrintTextBuilder(lorem, printText);
