@@ -3,12 +3,11 @@ import { displayTyping } from "./initTest.js";
 
 let timer;
 
-export const run = () => {
+const run = () => {
   const time = document.body.querySelector('.time>span b');
 
   displayTyping.btnStart.addEventListener('mousedown', e => e.preventDefault());
   document.removeEventListener('keydown', run);
-  document.addEventListener('keydown', keyDown);
 
   timer = setInterval(() => {
 
@@ -24,4 +23,4 @@ export const run = () => {
   }, 1000);
 };
 
-export { timer };
+export { timer, run };

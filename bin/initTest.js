@@ -1,8 +1,9 @@
 import { PrintTextBuilder } from "../bin/printTextBuilder";
 import { LoremApi } from "../bin/loremApi";
 import { DisplayTyping } from './displayTyping.js';
-import { run ,timer } from './runTest.js';
+import { run, timer } from './runTest.js';
 import { renderHTML } from "../src/utils.js";
+import { keyDown } from "./checkKeyDown.js";
 
 renderHTML();
 
@@ -27,6 +28,7 @@ async function initTest() {
 
   displayTyping = new DisplayTyping(document.body);
 
+  document.addEventListener('keydown', keyDown);
   document.addEventListener('keydown', run);
 }
 
