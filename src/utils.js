@@ -3,7 +3,7 @@ const random = (len) => {
 };
 
 const list = {
-  info: [
+  infoText: [
     {
       className: 'time',
       innerHTML: 'Оставшееся время:<span><b>60</b>c</span>',
@@ -20,6 +20,28 @@ const list = {
       className: 'precision',
       innerHTML: 'Аккуратность:<span><b>0</b>%</span>',
     }
+  ],
+  showResultForm: [
+    {
+      className: 'inpLevel',
+      for: 'inpLevel',
+      innerText: 'Сохранить или показать результат:',
+    },
+    {
+      className: 'inputNameUser',
+      type: 'text',
+      placeholder: 'Введите имя'
+    }
+  ],
+  showResult: [
+    {
+      className: 'btnSaveResult',
+      innerText: 'Сохранить',
+    },
+    {
+      className: 'btnShowResult',
+      innerText: 'Показать',
+    }
   ]
 };
 
@@ -29,6 +51,10 @@ const builderHTML = (list, key, parent) => {
   list[key].map((item) => {
     if (parent[key].tagName === 'UL') {
       elem = document.createElement('li');
+    } else if (parent[key].tagName === 'FORM') {
+      elem = document.createElement('form');
+    } else if (item.className === 'btnSaveResult' || item.className === 'btnShowResult') {
+      elem = document.createElement('button');
     } else {
       elem = document.createElement('div');
     }
@@ -37,7 +63,23 @@ const builderHTML = (list, key, parent) => {
       elem.innerHTML = item.innerHTML;
     }
 
+    if (item.innerText) {
+      elem.innerText = item.innerText;
+    }
+
+    if (item.className === 'inpLevel') {
+      elem = document.createElement('lebal');
+      elem.setAttribute('for', item.for);
+      elem.innerText = item.innerText;
+    }
+
+    if (item.className === 'inputNameUser') {
+      elem = document.createElement('input');
+      elem.setAttribute('placeholder', item.placeholder);
+    }
+
     elem.className = item.className;
+
     parent[key].append(elem);
   });
 };
@@ -60,34 +102,15 @@ const renderHTML = () => {
 
   const divShowResultForm = document.createElement('form');
   divShowResult.append(divShowResultForm);
-
-  const labelName = document.createElement('lebal');
-  labelName.for = 'inpLevel';
-  labelName.innerText = 'Сохранить или показать результат:';
-  divShowResultForm.append(labelName);
-
-  const inputNameUser = document.createElement('input');
-  inputNameUser.className = 'inputNameUser';
-  inputNameUser.type = 'text';
-  inputNameUser.placeholder = 'Введите имя';
-  divShowResultForm.append(inputNameUser);
-
-  const btnSaveResult = document.createElement('button');
-  btnSaveResult.className = 'btnSaveResult';
-  btnSaveResult.innerText = 'Сохранить';
-  divShowResult.append(btnSaveResult);
-
-  const btnShowResult = document.createElement('button');
-  btnShowResult.className = 'btnShowResult';
-  btnShowResult.innerText = 'Показать';
-  divShowResult.append(btnShowResult);
-
+  
   const ulInfoText = document.createElement('ul');
   ulInfoText.className = 'info-text';
   divInfo.append(ulInfoText);
 
   const parents = {
-    info: ulInfoText
+    infoText: ulInfoText,
+    showResultForm: divShowResultForm,
+    showResult: divShowResult
   };
 
   Object.keys(parents).forEach((key) => {

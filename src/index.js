@@ -30,7 +30,7 @@ btnSaveResult.addEventListener('click', () => {
 btnShowResult.addEventListener('click', () => {
   const nameUser = document.body.querySelector('.inputNameUser').value;
 
-  alert(`Name: ${nameUser}  Accuracy: ${localStorage.getItem(nameUser)}%`);
+  alert(`Имя: ${nameUser}  Аккуратность: ${localStorage.getItem(nameUser)}%`);
   displayTyping.inputNameUser.value = '';
 });
 
