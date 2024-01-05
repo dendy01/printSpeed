@@ -2,32 +2,65 @@ const random = (len) => {
   return Math.floor(Math.random() * len);
 };
 
+const builderLi = (text, suffics) => {
+  const span = document.createElement('span');
+  const b = document.createElement('b');
+
+  b.innerHTML = text;
+
+  span.append(b);
+
+  if (suffics) {
+    span.append(suffics);
+  }
+
+  return span.outerHTML;
+};
+
 const list = {
   infoText: [
     {
+      tagName: 'LI',
       className: 'time',
-      innerHTML: 'Оставшееся время:<span><b>60</b>c</span>',
+      innerHTML: `Оставшееся время: ${builderLi('60', 'с')}`,
     },
     {
+      tagName: 'LI',
       className: 'right',
-      innerHTML: 'Верные нажатия:<span><b>0</b></span>',
+      innerHTML: `Верные нажатия: ${builderLi('0')}`,
     },
     {
+      tagName: 'LI',
       className: 'error',
-      innerHTML: 'Неверные нажатия:<span><b>0</b></span>',
+      innerHTML: `Неверные нажатия: ${builderLi('0')}`,
     },
     {
+      tagName: 'LI',
       className: 'precision',
-      innerHTML: 'Аккуратность:<span><b>0</b>%</span>',
+      innerHTML: `Аккуратность: ${builderLi('0', '%')}`,
+    }
+  ],
+  btnContainer: [
+    {
+      tagName: 'button',
+      className: 'btnStart',
+      innerText: 'Новая попытка',
+    },
+    {
+      tagName: 'button',
+      className: 'btnStop',
+      innerText: 'Остановить',
     }
   ],
   showResultForm: [
     {
+      tagName: 'LABEL',
       className: 'inpLevel',
       for: 'inpLevel',
       innerText: 'Сохранить или показать результат:',
     },
     {
+      tagName: 'INPUT',
       className: 'inputNameUser',
       type: 'text',
       placeholder: 'Введите имя'
@@ -35,10 +68,12 @@ const list = {
   ],
   showResult: [
     {
+      tagName: 'BUTTON',
       className: 'btnSaveResult',
       innerText: 'Сохранить',
     },
     {
+      tagName: 'BUTTON',
       className: 'btnShowResult',
       innerText: 'Показать',
     }
@@ -48,33 +83,22 @@ const list = {
 const builderHTML = (list, key, parent) => {
   let elem = '';
 
-  list[key].map((item) => {
-    if (parent[key].tagName === 'UL') {
-      elem = document.createElement('li');
-    } else if (parent[key].tagName === 'FORM') {
-      elem = document.createElement('form');
-    } else if (item.className === 'btnSaveResult' || item.className === 'btnShowResult') {
-      elem = document.createElement('button');
-    } else {
-      elem = document.createElement('div');
-    }
+  list[key].forEach((item) => {
+    elem = document.createElement(item.tagName);
 
-    if (item.innerHTML) {
+    if (item.hasOwnProperty('innerHTML')) {
       elem.innerHTML = item.innerHTML;
     }
 
-    if (item.innerText) {
+    if (item.hasOwnProperty('innerText')) {
       elem.innerText = item.innerText;
     }
 
-    if (item.className === 'inpLevel') {
-      elem = document.createElement('lebal');
+    if (item.hasOwnProperty('for')) {
       elem.setAttribute('for', item.for);
-      elem.innerText = item.innerText;
     }
 
-    if (item.className === 'inputNameUser') {
-      elem = document.createElement('input');
+    if (item.hasOwnProperty('placeholder')) {
       elem.setAttribute('placeholder', item.placeholder);
     }
 
@@ -100,22 +124,21 @@ const renderHTML = () => {
   divShowResult.className = 'showResult';
   divWrapper.append(divShowResult);
 
+  const divContainer = document.createElement('div');
+  divContainer.className = 'container';
+  divWrapper.append(divContainer);
+
+  const divContent = document.createElement('div');
+  divContent.className = 'content';
+  divContent.append(paragraph);
+  divContainer.append(divContent);
+
   const divShowResultForm = document.createElement('form');
   divShowResult.append(divShowResultForm);
-  
+
   const ulInfoText = document.createElement('ul');
   ulInfoText.className = 'info-text';
   divInfo.append(ulInfoText);
-
-  const parents = {
-    infoText: ulInfoText,
-    showResultForm: divShowResultForm,
-    showResult: divShowResult
-  };
-
-  Object.keys(parents).forEach((key) => {
-    builderHTML(list, key, parents);
-  });
 
   const divForm = document.createElement('form');
   divInfo.append(divForm);
@@ -138,24 +161,16 @@ const renderHTML = () => {
   divBtnContainer.className = 'btnContainer';
   divInfo.append(divBtnContainer);
 
-  const btnStart = document.createElement('button');
-  btnStart.className = 'btnStart';
-  btnStart.innerText = 'Новая попытка';
-  divBtnContainer.append(btnStart);
+  const parents = {
+    infoText: ulInfoText,
+    btnContainer: divBtnContainer,
+    showResultForm: divShowResultForm,
+    showResult: divShowResult
+  };
 
-  const btnStop = document.createElement('button');
-  btnStop.className = 'btnStop';
-  btnStop.innerText = 'Остановить';
-  divBtnContainer.append(btnStop);
-
-  const divContainer = document.createElement('div');
-  divContainer.className = 'container';
-  divWrapper.append(divContainer);
-
-  const divContent = document.createElement('div');
-  divContent.className = 'content';
-  divContent.append(paragraph);
-  divContainer.append(divContent);
+  Object.keys(parents).forEach((key) => {
+    builderHTML(list, key, parents);
+  });
 };
 
 export { random, renderHTML };
