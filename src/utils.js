@@ -133,25 +133,25 @@ const renderHTML = () => {
   divContent.append(paragraph);
   divContainer.append(divContent);
 
-  const divShowResultForm = document.createElement('form');
+  const divShowResultForm = document.createElement('div');
   divShowResult.append(divShowResultForm);
 
   const ulInfoText = document.createElement('ul');
-  ulInfoText.className = 'info-text';
+  ulInfoText.className = 'typingMetrics';
   divInfo.append(ulInfoText);
 
-  const divForm = document.createElement('form');
+  const divForm = document.createElement('div');
   divInfo.append(divForm);
 
-  const labelLevel = document.createElement('lebal');
-  labelLevel.for = 'inpLevel';
+  const labelLevel = document.createElement('label');
+  labelLevel.for = 'selectLevel';
   labelLevel.innerText = 'Выбор уровня:';
   divForm.append(labelLevel);
 
   const inputLevel = document.createElement('input');
   inputLevel.className = 'level';
   inputLevel.type = 'number';
-  inputLevel.name = 'inpLevel';
+  inputLevel.name = 'selectLevel';
   inputLevel.max = 3;
   inputLevel.min = 1;
   inputLevel.value = 1;

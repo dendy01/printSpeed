@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(#007acc, #6DD5FA, #FFFFFF);
   font-family: Arial, Helvetica, sans-serif;
-  //overflow: hidden;
+  overflow: hidden;
 }
 
 .wrapper {
@@ -70,7 +70,7 @@ body {
     height: 20px;
   }
 
-  .info-text {
+  .typingMetrics {
     padding: 0;
     list-style: none;
 

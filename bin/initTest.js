@@ -1,6 +1,6 @@
-import { PrintTextBuilder } from "../bin/printTextBuilder";
-import { LoremApi } from "../bin/loremApi";
-import { DisplayTyping } from './displayTyping.js';
+import { PrintTextBuilder } from "./PrintTextBuilder.js";
+import { DisplayTyping } from "./displayTyping.js";
+import { LoremApi } from "./LoremApi.js";
 import { run, timer } from './runTest.js';
 import { renderHTML } from "../src/utils.js";
 import { keyDown } from "./checkKeyDown.js";
@@ -21,12 +21,34 @@ async function initTest() {
   const lorem = await loremApi.text();
   displayTyping.btnStart.disabled = false;
   displayTyping.btnStop.disabled = false;
-  displayTyping.levelTestPrint.blur();
 
   const printTextBuilder = new PrintTextBuilder(lorem, printText);
   printTextBuilder.build();
 
-  displayTyping = new DisplayTyping(document.body);
+  displayTyping = new Proxy(new DisplayTyping(document.body), {
+    get(target, prop) {
+      return target[prop];
+    },
+
+    set(target, prop, newValue) {
+      if (prop === 'position') {
+        if (target.isTrueContinue === 'Backspace') {
+          target[prop] = newValue;
+          target.decreasePosition();
+        } else {
+          if (target.isTrueContinue) {
+            target.increazeCorrectPosition();
+          } else {
+            target.increazeIncorrectPosition();
+          }
+        }
+      }
+
+      target[prop] = newValue;
+
+      return true;
+    }
+  });
 
   document.addEventListener('keydown', keyDown);
   document.addEventListener('keydown', run);

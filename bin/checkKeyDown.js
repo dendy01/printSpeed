@@ -10,15 +10,11 @@ export const keyDown = (event) => {
       break;
 
     case 'Backspace':
-      displayTyping.decreasePosition();
-      break;
-
-    case displayTyping.spans[displayTyping.position].innerText:
-      displayTyping.increazeCorrectPosition();
+      displayTyping.mover(-1, 'Backspace');
       break;
 
     default:
-      displayTyping.increazeIncorrectPosition();
+      displayTyping.mover(1, event.key === displayTyping.spans[displayTyping.position].innerText);
       break;
   }
 };
