@@ -2,7 +2,7 @@ import { PrintTextBuilder } from "./PrintTextBuilder.js";
 import { DisplayTyping } from "./displayTyping.js";
 import { LoremApi } from "./LoremApi.js";
 import { run, timer } from './runTest.js';
-import { renderHTML } from "../src/utils.js";
+import { renderHTML } from "./renderHTML.js";
 import { keyDown } from "./checkKeyDown.js";
 
 renderHTML();
